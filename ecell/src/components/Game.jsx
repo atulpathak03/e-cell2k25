@@ -19,8 +19,8 @@ const Game = () => {
     const newGrid = [...gridColors];
 
     if (newGrid[8] === 'red') {
-      newGrid[8] = 'blue'; // Toggle to blue if already red
-      setClickSequence([]); // Reset the sequence
+      newGrid[8] = 'blue'; 
+      setClickSequence([]); 
     } else {
       clickSequence.forEach((index, i) => {
         setTimeout(() => {
@@ -30,9 +30,9 @@ const Game = () => {
       });
 
       setTimeout(() => {
-        newGrid[8] = 'red'; // Set to red after the sequence
+        newGrid[8] = 'red'; 
         setGridColors([...newGrid]);
-        setClickSequence([]); // Reset the sequence
+        setClickSequence([]); 
       }, clickSequence.length * 500);
     }
 
