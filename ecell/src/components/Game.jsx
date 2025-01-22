@@ -6,7 +6,7 @@ const Game = () => {
   const [clickSequence, setClickSequence] = useState([]);
 
   const handleSquareClick = (index) => {
-    if (gridColors[index] === 'red') return; 
+    if (gridColors[index] === 'red') return;
 
     const newGrid = [...gridColors];
     newGrid[index] = 'red';
@@ -16,21 +16,27 @@ const Game = () => {
   };
 
   const handleLastSquareClick = () => {
-    if (gridColors[8] === 'red') return; 
-
     const newGrid = [...gridColors];
-    clickSequence.forEach((index, i) => {
-      setTimeout(() => {
-        newGrid[index] = 'blue';
-        setGridColors([...newGrid]); 
-      }, i * 500); 
-    });
 
-    setTimeout(() => {
-      newGrid[8] = 'red'; 
-      setGridColors([...newGrid]);
-      setClickSequence([]); 
-    }, clickSequence.length * 500);
+    if (newGrid[8] === 'red') {
+      newGrid[8] = 'blue'; // Toggle to blue if already red
+      setClickSequence([]); // Reset the sequence
+    } else {
+      clickSequence.forEach((index, i) => {
+        setTimeout(() => {
+          newGrid[index] = 'blue';
+          setGridColors([...newGrid]);
+        }, i * 500);
+      });
+
+      setTimeout(() => {
+        newGrid[8] = 'red'; // Set to red after the sequence
+        setGridColors([...newGrid]);
+        setClickSequence([]); // Reset the sequence
+      }, clickSequence.length * 500);
+    }
+
+    setGridColors(newGrid);
   };
 
   return (
