@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 
 const Game = () => {
-  // Initialize state for grid colors and click sequence
   const initialGrid = Array(9).fill('blue');
   const [gridColors, setGridColors] = useState(initialGrid);
   const [clickSequence, setClickSequence] = useState([]);
 
-  // Handle square click
   const handleSquareClick = (index) => {
-    if (gridColors[index] === 'red') return; // Ignore if already red
+    if (gridColors[index] === 'red') return; 
 
     const newGrid = [...gridColors];
     newGrid[index] = 'red';
@@ -17,22 +15,21 @@ const Game = () => {
     setClickSequence([...clickSequence, index]);
   };
 
-  // Handle the special case when the last square is clicked
   const handleLastSquareClick = () => {
-    if (gridColors[8] === 'red') return; // Ignore if already red
+    if (gridColors[8] === 'red') return; 
 
     const newGrid = [...gridColors];
     clickSequence.forEach((index, i) => {
       setTimeout(() => {
         newGrid[index] = 'blue';
-        setGridColors([...newGrid]); // Update the state step by step
-      }, i * 500); // 500ms delay between each color change
+        setGridColors([...newGrid]); 
+      }, i * 500); 
     });
 
     setTimeout(() => {
-      newGrid[8] = 'red'; // Change the last square to red after sequence
+      newGrid[8] = 'red'; 
       setGridColors([...newGrid]);
-      setClickSequence([]); // Clear the sequence after completing the process
+      setClickSequence([]); 
     }, clickSequence.length * 500);
   };
 
