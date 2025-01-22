@@ -1,28 +1,39 @@
 import React, { useState } from "react";
 import { assets } from "../assets/assets.js";
+import ReactTypingEffect from 'react-typing-effect';
 
 const Page2 = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [hovered, setHovered] = useState(false); 
 
   const handleClick = () => {
-    setIsVisible(!isVisible); 
+    setIsVisible(!isVisible);
   };
 
   return (
     <div className="h-screen flex justify-center items-center bg-[url(https://i.pinimg.com/736x/7e/50/3d/7e503d3ef0813ba0ac34c8b2ca525663.jpg)] bg-cover">
-      <div className="flex flex-col">
-        <h1 className="text-4xl font-bold bg-gradient-to-r from-white to-pink-500 bg-clip-text text-transparent mb-4">LET THE GAME BEGIN</h1>
-        <button
-          className="border  border-white bg-white text-black px-6 py-2 rounded-md shadow-lg hover:bg-gray-100 transition transform hover:scale-105"
-          onClick={handleClick}
-        >
-          Start
-        </button>
+      <div className="grid grid-cols-1">
+        <div>
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-white to-pink-500 bg-clip-text text-transparent mb-4">
+            <ReactTypingEffect
+                text={["LET THE GAME BEGIN"]}
+                speed={50}
+                eraseSpeed={25}
+                typingDelay={100}
+              />
+          </h1>
+        </div>
+        <div className="flex justify-center items-center">  
+          <button
+            className="border border-white bg-white text-black px-6 py-2 rounded-md shadow-lg hover:bg-gray-100 transition transform hover:scale-105"
+            onClick={handleClick}
+          >
+            Start
+          </button>
+        </div>
 
         <div
-          className={`absolute inset-0 bg-black bg-opacity-90 flex justify-center items-center transition-all ${
-            isVisible ? "opacity-100 visible" : "opacity-0 invisible"
-          }`}
+          className={`absolute inset-0 bg-black bg-opacity-90 flex justify-center items-center transition-all ${isVisible ? "opacity-100 visible" : "opacity-0 invisible"}`}
         >
           <div className="flex justify-between items-center space-x-8 bg-black p-6 rounded-lg shadow-xl max-w-5xl w-full">
             <div className="w-1/3 flex justify-center">
@@ -33,18 +44,35 @@ const Page2 = () => {
               />
             </div>
 
-            <div className="w-1/3 text-center">
-              <p className="text-xl font-semibold text-white">Atul Pathak</p>
-              <p className="text-sm text-white">20235022</p>
+            <div 
+              className="w-1/3 text-center"
+              onMouseEnter={() => setHovered(true)} 
+              onMouseLeave={() => setHovered(false)} 
+            >
+              <p
+                className={`text-xl font-semibold text-white transition-all ${hovered ? "text-pink-500" : ""}`}
+              >
+                Atul Pathak
+              </p>
+              <p
+                className={`text-sm text-white transition-all ${hovered ? "text-pink-500" : ""}`}
+              >
+                20235022
+              </p>
+
               <div className="mt-4">
                 <img
-                  className="h-50 w-45  mx-auto border-4 border-gray-200 shadow-md"
+                  className="h-50 w-45 mx-auto border-4 border-gray-200 shadow-md hover:scale-105 transition-transform duration-300"
                   src={assets.mypic1}
                   alt="Atul"
                 />
               </div>
+
               <div className="flex justify-center items-center mt-4 space-x-4">
-                <a href="https://www.instagram.com/atul_pathak03/" className="hover:scale-110 transition">
+                <a
+                  href="https://www.instagram.com/atul_pathak03/"
+                  className="hover:scale-110 transition"
+                >
                   <img
                     className="h-8 w-8"
                     src={assets.insta}
