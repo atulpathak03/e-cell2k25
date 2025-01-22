@@ -4,7 +4,6 @@ import ReactTypingEffect from 'react-typing-effect';
 
 const Page2 = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [hovered, setHovered] = useState(false); 
 
   const handleClick = () => {
     setIsVisible(!isVisible);
@@ -12,6 +11,9 @@ const Page2 = () => {
 
   return (
     <div className="h-screen flex justify-center items-center bg-[url(https://i.pinimg.com/736x/7e/50/3d/7e503d3ef0813ba0ac34c8b2ca525663.jpg)] bg-cover">
+      <a href="/">
+        <img className="absolute top-0 left-0 mt-5 ml-5 h-6 w-6 cursor-pointer" src={assets.back}/>
+      </a>
       <div className="grid grid-cols-1">
         <div>
           <h1 className="text-4xl font-bold bg-gradient-to-r from-white to-pink-500 bg-clip-text text-transparent mb-4">
@@ -46,16 +48,14 @@ const Page2 = () => {
 
             <div 
               className="w-1/3 text-center"
-              onMouseEnter={() => setHovered(true)} 
-              onMouseLeave={() => setHovered(false)} 
             >
               <p
-                className={`text-xl font-semibold text-white transition-all ${hovered ? "text-pink-500" : ""}`}
+                className='text-xl font-semibold text-white transition-al'
               >
                 Atul Pathak
               </p>
               <p
-                className={`text-sm text-white transition-all ${hovered ? "text-pink-500" : ""}`}
+                className='text-sm text-white transition-all'
               >
                 20235022
               </p>
